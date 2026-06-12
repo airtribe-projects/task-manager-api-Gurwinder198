@@ -1,17 +1,10 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+/**
+ * Entry module for the Express application.
+ *
+ * Exports a ready-to-use, seeded app instance (without calling `listen`) so it
+ * can be driven directly by Supertest — this is what `test/server.test.js`
+ * requires via `require('../app')`. Network listening lives in `server.js`.
+ */
+const { createApp } = require('./src/app');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.listen(port, (err) => {
-    if (err) {
-        return console.log('Something bad happened', err);
-    }
-    console.log(`Server is listening on ${port}`);
-});
-
-
-
-module.exports = app;
+module.exports = createApp();
